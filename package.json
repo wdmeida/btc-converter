@@ -9,7 +9,7 @@
     "build:watch": "npm run build -- --watch",
     "lint": "./node_modules/.bin/eslint src/*.src",
     "prepush": "npm run lint",
-    "test": "./node_modules/.bin/mocha tests/**/*.js --require babel-register --reporter nyan",
+    "test": "./node_modules/.bin/mocha tests/**/*.js --require babel-register --require babel-polyfill",
     "test:tdd": "npm run test -- --watch",
     "test:coverage": "nyc npm test"
   },
@@ -61,6 +61,8 @@
   "dependencies": {
     "chalk": "^2.3.2",
     "commander": "^2.14.1",
-    "request": "^2.83.0"
+    "ora": "^2.0.0",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5"
   }
 }

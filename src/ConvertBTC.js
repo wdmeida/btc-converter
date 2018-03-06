@@ -1,20 +1,31 @@
 const chalk = require('chalk');
-const request = require('request');
+const request = require('request-promise-native');
+const ora = require('ora');
+
+const spinner = ora({
+  text: 'Retriving Bitvoin data...',
+  color: 'yellow',
+});
 
 function convertBTC(currency = 'USD', amount = 1) {
   const url = `https://apiv2.bitcoinaverage.com/convert/global?from=BTC&to=${currency}&amount=${amount}`;
 
-  request(url, (error, response, body) => {
-    let apiResponse;
+  spinner.start();
 
-    try {
-      apiResponse = JSON.parse(body);
-    } catch (parseError) {
-      console.log(chalk.red('Something went wrong in API. Try in a few minutes.'));
-      return parseError;
-    }
-    console.log(`${chalk.red(amount)} BTC to ${chalk.cyan(currency)} = ${chalk.yellow(apiResponse.price)}`);
-  });
+  return request(url)
+    .then((body) => {
+      spinner.stop();
+      return body;
+    })
+    .then((body) => {
+      const apiResponse = JSON.parse(body);
+      console.info(`${chalk.red(amount)} BTC to ${chalk.cyan(currency)} = ${chalk.yellow(apiResponse.price)}`);
+    })
+    .catch((err) => {
+      spinner.stop();
+      console.info(chalk.red('Something went wrong in API. Try in a few minutes.'));
+      return err;
+    });
 }
 
 module.exports = convertBTC;
