@@ -9,7 +9,7 @@
     "build:watch": "npm run build -- --watch",
     "lint": "./node_modules/.bin/eslint src/*.src",
     "prepush": "npm run lint",
-    "test": "./node_modules/.bin/mocha tests/**/*.js --require babel-register --reporter nyan",
+    "test": "./node_modules/.bin/mocha tests/**/*.js --require babel-register --require babel-polyfill",
     "test:tdd": "npm run test -- --watch",
     "test:coverage": "nyc npm test"
   },
@@ -52,10 +52,17 @@
     "eslint-plugin-import": "^2.9.0",
     "husky": "^0.14.3",
     "mocha": "^5.0.1",
+    "nock": "^9.2.3",
     "nyc": "^11.4.1",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "sinon": "^4.4.2",
+    "sinon-chai": "^3.0.0"
   },
   "dependencies": {
-    "commander": "^2.14.1"
+    "chalk": "^2.3.2",
+    "commander": "^2.14.1",
+    "ora": "^2.0.0",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5"
   }
 }
