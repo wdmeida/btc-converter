@@ -1,5 +1,7 @@
 # Bitcoin Converter CLI
 
+[![Build Status](https://travis-ci.org/wdmeida/btc-converter.svg?branch=master)](https://travis-ci.org/wdmeida/spotify-wrapper)
+
 > A CLI to convert Bitcoin to any currency provided, developed during the course of [JS com TDD na prática](https://www.udemy.com/js-com-tdd-na-pratica/?couponCode=GITHUB_LINK).
 
 
